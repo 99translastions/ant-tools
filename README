@@ -1,0 +1,27 @@
+99translations.com :: Ant Tools
+
+This package is set of custom ant (http://ant.apache.org) tags to automate translation of Java applications. 
+
+In order to install you should download the module from http://github.com/99translastions/ant-tools/tree/master and run 'ant dist'. That will create ant-trans.jar file that contains all classes that you need. Next step will be to define custom tasks in your ant build file as:
+
+<taskdef name="trans-download" classname="DownloadTask" classpath="ant-trans.jar"/>
+<taskdef name="trans-upload" classname="UploadTask" classpath="ant-trans.jar"/>
+
+With that you can go a head and use trans-download and trans-upload tasks. 
+
+Both tasks take 2 common parameters:
+- attribute 'api' with value equal to the API key for your project at 99translations.com
+- attribute 'tranlationFile' with name of the translation file - note it has to be created manually on the server prior to using this tools
+
+Additionaly trans-download task requires parameter:
+- attribute 'locale' with locale value for downloaded file.
+
+Example (test.xml):
+
+<target name="test-upload">
+  <trans-upload api="232322" translationFile="test.properties" file="test.properties" />
+</target>
+
+<target name="test-download">
+  <trans-download api="232322" translationFile="test.properties" file="test_de.properties" locale="de" />
+</target>
