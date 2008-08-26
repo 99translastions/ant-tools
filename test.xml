@@ -1,0 +1,16 @@
+<project name="test-project">
+
+	<taskdef name="trans-download" classname="DownloadTask" classpath="ant-trans.jar"/>
+	<taskdef name="trans-upload" classname="UploadTask" classpath="ant-trans.jar"/>
+
+	<target name="test-all" depends="test-upload,test-download" />
+
+	<target name="test-upload">
+		<trans-upload api="232322" translationFile="test.properties" file="test.properties" />
+	</target>
+
+	<target name="test-download">
+		<trans-download api="232322" translationFile="test.properties" file="test_de.properties" locale="de" />
+	</target>
+
+</project>
